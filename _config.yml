@@ -1,0 +1,224 @@
+# --- Config --- #
+
+# url is the full website URL
+# baseurl is the website's URL without the hostname
+
+# If you are building a simple GitHub user page (https://username.github.io) then use these settings:
+url: "https://khieunguyen.github.io"
+baseurl: ""
+
+# If you are building a GitHub project page then use these settings:
+#url: "http://username.github.io/projectname"
+#baseurl: "/projectname"
+
+# Of course don't forget to change the username and projectname to YOUR username and project
+
+# Site settings
+# Name of website
+title   : "Khieu V. NGUYEN's site"
+name    : "Khieu V. NGUYEN"
+author  : "Khieu V. NGUYEN"
+mathjax : true
+logo-img: "skins/Logo.png"
+
+# --- Navigation bar options --- #
+
+# List of links in the navigation bar
+navbar-links:
+    <i class="fa fa-home" aria-hidden="true"></i> Home: ""
+    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Notes: "notes"
+#    Publications: "publications"
+#    Software: "softwares"
+    <i class="fa fa-book" aria-hidden="true"></i> Reading: "reading"
+#  Resources:
+#    - GPU Monte Carlo: "http://khieunguyen.github.io/GPUMCdMRI/"
+#    - Compressed Sensing: "http://khieunguyen.github.io"
+#  About Me: "aboutme"
+
+paginate: 2
+paginate_path: "/notes/page:num/"
+
+scholar:
+    style: apa
+    bibliography: mypapers.bib
+    replace_strings: true
+    query: "@*"
+
+
+# slider section
+slider-links:
+
+
+# featured-project section
+featured-links:
+
+# --- Profile CV --- #
+# Profile section, remove the following part if you do not expect to display them
+profile-img: "img/profile.jpeg"
+profile-tagline: "Data Scientist at Boostrs"
+profile-intro: "With expertise and 5+ years experience in experimental, modeling, and simulation of diffusion MRI; and 2+ years experience in both numerical methods (finite volume & finite difference) and GPU programming (via CUDA, OpenACC), I am interested in implement numerical methods for scientific and industrial problems."
+# experience section
+profile-experience:
+  - company: "Boostrs"
+    company-logo: "img/Logo-skillmapper.png"
+    company-link: "https://boost.rs"
+    role: "Data Scientist"
+    duration: "Apr 2019 - Now"
+    duration-time:
+    location: "Paris, France"
+    details:
+      - item: "Develope Boostrs' NLP algorithms and implemented it in Boostrs's products."
+
+  - company: "MIRCen, CEA Fontenay-aux-Roses"
+    company-logo: "img/Logo-CEA.png"
+    company-link: "http://jacob.cea.fr/drf/ifrancoisjacob/Pages/Departements/MIRCen.aspx"
+    role: "Postdoctoral research"
+    duration: "Apr 2017 - Nov 2018"
+    duration-time: "1 year 8 months"
+    location: "Fontenay-aux-Roses, France"
+    details:
+      - item: "Accelerate Monte-Carlo (MC) simulation of restricted diffusion in complex structures by using Octree structure & binary marker."
+      - item: "Developed an efficient GPU-based MC simulation of diffusion NMR."
+      - item: "Reduced MC simulation time from weeks (in CAMINO) to minutes or hours."
+      - item: "Open the possibility to: simulate the DW-NMR signal in complex cellular structures (such as astrocyte) within reasonable time, better understand in-tracellular diffusion, validate diffusion models in a complex structure."
+
+  - company: "NeuroSpin, CEA Saclay"
+    company-logo: "img/Logo-CEA.png"
+    company-link: "http://joliot.cea.fr/drf/joliot/en/Pages/research_entities/NeuroSpin.aspx"
+    role: "Ph.D. Candidate"
+    duration: "Feb 2014 - Apr 2017"
+    duration-time: "3 years 2 months"
+    location: "Gif-sur-Yvette, France"
+    details:
+      - topic: "MRI experiments, Compressed Sensing in MRI"
+      - item: "Proposed a DLA-based compressed sensing (CS) undersampling strategy."
+      - item: "Implemented DLA-based CS for quantitative T1-weighted (T1w) and T2-
+weighted (T2w) imaging."
+      - item: "Implemented CS-RARE (T2w) and CS-FLASH (T1w) sequences (in Bruker system, ParaVision 5 & 6) and used to image neuronal tissue."
+      - item: "CS sequences help to reduced up to 50% acquisition time while preserves the SNR, resolution and contrast."
+      - topic: "Diffusion MRI: experiments & simulations"
+      - item: "Acquired and analyzed the time-dependent dMRI data in the Aplysia neuronal network for 3 cell types: large cell neurons, bag cell neurons, and nerves."
+      - item: "Retrieved microstructural information of the neuronal tissue by comparing diffusion MRI data and diffusion MRI simulations."
+
+  - company: "CMAP, Ecole Polytechnique"
+    company-logo: "img/Logo-X.png"
+    company-link: "https://portail.polytechnique.edu/cmap/"
+    role: "Master 2 Internship"
+    duration: "Apr - Jul 2013"
+    duration-time: "4 months"
+    location: "Palaiseau, France"
+    details:
+      - item: "Parallelize implementation of finite volume code for solving Bloch-Torrey equation using OpenMP."
+      - item: "Applying Bezier curves to simulate axons neuronal tissue (cylinders)."
+
+  - company: "Faculty of Math & CS, HCM University of Science"
+    company-logo: "img/Logo-KHTN.jpg"
+    company-link: "http://www.math.hcmus.edu.vn/index.php"
+    role: "Teaching Assistant"
+    duration: "Sep 2011 - Jul 2012"
+    duration-time: "a year"
+    location: "HoChiMinh City, Vietnam"
+    details:
+      - item: "Reinforce lessons presented by teachers by reviewing material with students"
+      - item: "Help teachers with grading"
+      - item: "Instruct students in figure out the way to solving mathematics problems in Analysis 1, 2;  functional analysis..."
+
+# education section
+profile-education:
+  - degree: "Ph.D. in Imaging & Medical Physics"
+    school: "University Paris 11"
+    duration: "Feb 2014 - Apr 2017"
+    location: "France"
+    topic: "MR microscopy of neuronal tissue: acquisition acceleration, modeling and experimental validation of water diffusion."
+    GPA:
+    program:
+
+  - degree: "M.Sc in Applied Maths"
+    school: "University Paris 13"
+    duration: "Aug 2012 - Jul 2013"
+    location: "France"
+    topic:
+    GPA: "17.26/20 mention Trés Bien"
+    program:
+
+  - degree: "B.Sc in Maths & CS"
+    school: "HCM University of Science"
+    duration: "Sep 2007 - Jun 2011"
+    location: "Vietnam"
+    topic:
+    GPA:
+    program: "Honor Program"
+
+# skills section
+profile-skills:
+    Python: 85%
+    R: 80%
+    Machine learning: 75%
+    High performing computing: 80%
+    GPU programming: 75%
+    C++: 80%
+    HTML 5: 85%
+
+# soft-skills section
+profile-softskills:
+    Teamwork:
+    Self-motivation:
+    Time management:
+    Multi-discipline:
+    Problem solving:
+    Critical thinking:
+    Open-minded:
+
+# Google webmaster tools
+google_verify:
+
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:
+
+# Contact form:
+# - static : pass through formspree.io to validate email sending
+# - disqus : replace contact form by disqus thread
+# - comment the line below if you want to stick with the default PHP contact form
+contact: static
+
+# If you use disqus you need disqus shortname
+# https://help.disqus.com/customer/portal/articles/466208
+disqus_shortname: myshortname
+
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+social:
+  - title: orcid
+    url: https://orcid.org/0000-0002-9003-9595
+  - title: researchgate
+    url: https://www.researchgate.net/profile/Khieu_Nguyen3
+  - title: mendeley
+    url: https://www.mendeley.com/profiles/khieu-nguyen/
+  - title: google-scholar
+    url: https://scholar.google.fr/citations?user=zlsAAt8AAAAJ&hl=en
+  - title: twitter
+    url: http://twitter.com/
+  - title: facebook
+    url: http://facebook.com/
+  - title: linkedin
+    url: https://www.linkedin.com/in/khieunguyen/
+  - title: stack-overflow
+    url: http://stackoverflow.com/questions/tagged/khieu
+  - title: bitbucket
+    url: http://bitbucket.org/khieunguyen
+  - title: github
+    url: http://github.com/khieunguyen
+
+# Postal address (add as many lines as necessary)
+address:
+  - line: 91400 Orsay, France
+  - line:
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-scholar # if using jekyll scholar plugin to generate your ref/publication/citation...

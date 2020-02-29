@@ -1,0 +1,26 @@
+- name: Featured Project
+  icon: "fas fa-project-diagram"
+- name: Python
+  icon: "fab fa-python"
+- name: R
+  icon: "fab fa-python"
+- name: Probability & Statistics
+  icon: "fa fa-chart-bar-o"
+- name: Data Science
+  icon: "fas fa-database"
+- name: Natural Language Processing
+  icon: "fas fa-language"
+- name: Machine Learning
+  icon: "fas fa-robot"
+- name: Deep Learning
+  icon: "fas fa-brain"
+- name: Linear Algebra
+  icon: "fas fa-square-root-alt"
+- name: JavaScript
+  icon: "fab fa-js-square"
+- name: Web Development
+  icon: "fab fa-html5"
+- name: Skills
+  icon: "fas fa-code-branch"
+- name: Others
+  icon: "fas fa-puzzle-piece"

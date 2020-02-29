@@ -1,0 +1,182 @@
+---
+title: Khieu V. NGUYEN's site
+layout: default
+icon-photo: CV.png
+permalink: /cv
+---
+
+<div id="profile" class="container">
+    <!-- tagline -->
+    <div class="row clearfix" >
+        <div class="col-lg-auto col-md-auto col-sm-auto profile-header" style="width: 400px; ">
+            <img src="{{ site.baseurl }}/{{site.profile-img}}" >
+            <h5>{{site.name}}</h5>
+            <p>{{site.profile-tagline}}</p>
+            {% for network in site.social %}
+					    
+		    {% if network.title == "orcid" %}
+			<a style="padding-left:4px" href="{{ network.url }}" data-placement="top" title="Orcid"><i class="ai ai-orcid "></i></a>
+			{% endif %}
+			
+			{% if network.title == "researchgate" %}
+			<a style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="ResearchGate"><i class="ai ai-researchgate "></i></a>
+			{% endif %}
+			
+			{% if network.title == "mendeley" %}
+			<a style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="Mendeley"><i class="ai ai-mendeley "></i></a>
+			{% endif %}
+			
+			{% if network.title == "google-scholar" %}
+			<a style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="Google Scholar"><i class="ai ai-google-scholar "></i></a>
+			{% endif %}
+			
+			{% if network.title == "linkedin" %}
+			<a style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="Linkedin"><i class="fa fa-linkedin "></i></a>
+			{% endif %}
+			
+			{% if network.title == "github" %}
+			<a style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github "></i></a>
+			{% endif %}
+			
+			{% endfor %}
+			
+			
+        </div>
+        
+    </div>
+    
+    <div class="row">
+        <!-- Left column -->
+        <div class="col-lg-8 col-sm-12 col-md-8">
+            <!-- About card -->
+            {% if site.profile-intro %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-info-circle"></i> About</h5>
+                    
+                    <p class="card-text">{{site.profile-intro}}</p>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Featured projects card - - >
+            <div class="card ">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-tasks"></i> Featured projects</h5>
+                    <p class="card-text">I am working at Boost.rs, the star-up company placed in Paris, district 19.</p>
+                </div>
+            </div>
+            -->
+            
+            <!-- Experiences card -->
+            {% if site.profile-experience %}
+            <div class="card ">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-university"></i> Experience</h5>
+                    {% for exp in site.profile-experience %}
+                    <div class="row profile-text">
+                        {% if exp.company-logo %}<div class="col-lg-1 col-md-1 col-sm-1 company-logo"> <a href="{{exp.company-link}}"><img src="{{ site.baseurl }}/{{exp.company-logo}}" ></a></div> {% endif %}
+                        <div class="col-lg-11 col-md-11 col-sm-11">
+                            <h6>{{exp.role}}</h6>
+                            <p class="text-primary">{{exp.company}}<p>
+                            <div class="profile-span">
+                                <p style="width: 170px;"><i class="fa fa-calendar" aria-hidden="true"></i> {{exp.duration}}</p>
+                                {% if exp.duration-time %}
+                                <p class="text-success" style="width: 140px;"><i class="fa fa-clock-o" aria-hidden="true"></i> {{exp.duration-time}}</p>
+                                {% endif %}
+                                <p style="width: 200px;"><i class="fa fa-map-marker" aria-hidden="true"></i> {{exp.location}}</p>
+                            </div>
+                            <!--div class="profile-text-sm">
+                            <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{exp.location}}</p></div-->
+                            {% for item in exp.details %}
+                            {% if item.topic %}
+                            <p class="profile-topic"><b>{{item.topic}}</b></p>
+                            {% endif %}
+                            {% if item.item %}
+                            <p><i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                            {{item.item}}</p>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+           
+        </div>
+        <!-- End left column -->
+         
+        <!-- Right column -->
+        <div class="col-lg-4 col-sm-12 col-md-4">
+            {% if site.profile-education %}
+            <!-- Education card -->
+            <div class="card ">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-graduation-cap"></i> Education</h5>
+                    
+                    {% for edu in site.profile-education %}
+                    <div class="profile-text">
+                        <h6>{{edu.degree}}</h6>
+                        <p class="text-primary">{{edu.school}}</p>
+                        <div class="profile-span">
+                            <p><i class="fa fa-calendar" aria-hidden="true"></i> {{edu.duration}}</p>
+                            <p style="width: 100px;"><i class="fa fa-map-marker" aria-hidden="true"></i> {{edu.location}}</p>
+                        </div>
+                        {% if edu.topic %}
+                        <p><b>Topic: </b>{{edu.topic}}</p>
+                        {% endif %}
+                        {% if edu.GPA %}
+                        <p><b>GPA: </b>{{edu.GPA}}</p>
+                        {% endif %}
+                        {% if edu.program %}
+                        <p>{{edu.program}}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Skills card -->
+            {% if site.profile-skills %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-paint-brush" aria-hidden="true"></i>
+ Skills</h5>
+                    {% for skill in site.profile-skills %}
+                    <!-- List of skills/ -->
+                    <div class="progress-labels">
+                        <p>{{skill[0]}}</p>
+                        <p>{{skill[1]}}</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: {{skill[1]}};" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Soft skills card -->
+            {% if site.profile-softskills %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa fa-bolt" aria-hidden="true"></i>
+ Soft skills</h5>
+                    <!-- List of skills/ -->
+                    {% for skill in site.profile-softskills %}
+                    <span class="badge badge-success">{{skill}}</span>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            {% endif %}
+        </div>
+         <!-- End right column -->
+        
+    </div>
+</div>
+
+

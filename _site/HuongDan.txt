@@ -1,0 +1,11 @@
+
+# Hướng dẫn cài Jekyll trên ubuntu
+
+1. Cài Ruby-dev 
+sudo apt-get install ruby-dev
+
+2. Cài jekyll và bundler
+sudo gem install jekyll bundler 
+
+3. chạy jekyll on local
+bundle exec jekyll serve

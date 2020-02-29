@@ -1,0 +1,204 @@
+---
+title: Khieu V. NGUYEN's site
+layout: leaflet
+Leaflet: true
+permalink: /COVID-19
+---
+
+<div class="container">
+  <!-- tagline -->
+  <div class="row clearfix" >
+
+  </div>
+
+  <div class="row">
+    <!-- Left column -->
+    <div class="col-lg-8 col-sm-12 col-md-8">
+      <h3> Coronavirus COVID-19 Global Cases </h3>
+      <div id="mapid" style="min-width:600px; width:100%; height: 600px;"></div>
+
+    </div>
+    <!-- End left column -->
+
+    <!-- Right column -->
+    <div class="col-lg-4 col-sm-12 col-md-4">
+      <div id="my_dataviz1"></div>
+    </div>
+    <!-- End right column -->
+
+  </div>
+</div>
+
+<!-- map data -->
+<script>
+  	var mymap = L.map('mapid').setView([31.505, 117.09], 2);
+
+  	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+  		maxZoom: 18,
+  		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+  			'<a href="{{ site.baseurl }}">{{ site.name }}</a> © 2020',
+  		id: 'mapbox/streets-v11'
+  	}).addTo(mymap);
+
+    // Add a svg layer to the map
+    L.svg().addTo(mymap);
+
+    // Create data for circles:
+    /*var markers = [
+      {long: 9.083, lat: 42.149}, // corsica
+      {long: 7.26, lat: 43.71}, // nice
+      {long: 2.349, lat: 48.864}, // Paris
+      {long: -1.397, lat: 43.664}, // Hossegor
+      {long: 3.075, lat: 50.640}, // Lille
+      {long: -3.83, lat: 48}, // Morlaix
+    ];*/
+    var markers = $.getJSON({'url': "{{ site.url }}/nCov19-data/confirmed.json", 'async': false});
+    markers = JSON.parse(markers.responseText);
+    // alert(markers.lat);
+    // Select the svg area and add circles:
+    d3.select("#mapid")
+      .select("svg")
+      .selectAll("myCircles")
+      .data(markers)
+      .enter()
+      .append("circle")
+        .attr("cx", function(d){ return mymap.latLngToLayerPoint([d.Lat, d.Long]).x })
+        .attr("cy", function(d){ return mymap.latLngToLayerPoint([d.Lat, d.Long]).y })
+        .attr("r",  function(d){
+                      if (d.total > 5000) {return 45;}
+                      if (d.total > 2000) {return 30;}
+                      if (d.total > 240) {return 20;}
+                      if (d.total > 153) {return 15;}
+                      if (d.total > 60) {return 10;}
+                      if (d.total > 21) {return 5;}
+                      if (d.total > 0) {return 2;}
+              })
+        .style("fill", "red")
+        .attr("stroke", "red")
+        .attr("stroke-width", 1)
+        .attr("fill-opacity", .7)
+
+    // Function that update circle position if something change
+    function update() {
+      d3.selectAll("circle")
+        .attr("cx", function(d){ return mymap.latLngToLayerPoint([d.Lat, d.Long]).x })
+        .attr("cy", function(d){ return mymap.latLngToLayerPoint([d.Lat, d.Long]).y })
+    }
+
+    // If the user change the map (zoom or drag), I update circle position:
+    mymap.on("moveend", update)
+
+</script>
+
+<!-- Line plot -->
+<!-- Circle are black when hovered-->
+<style>
+.myCircle:hover {
+  stroke: black;
+}
+</style>
+
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 100, bottom: 30, left: 30},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("{{ site.url }}/nCov19-data/daily_data.csv", function(data) {
+
+    // List of groups (here I have one group per column)
+    var allGroup = ["confirmed","death","recovered"]
+
+    // Reformat the data: we need an array of arrays of {x, y} tuples
+    var dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
+      return {
+        name: grpName,
+        values: data.map(function(d) {
+          return {time: d3.timeParse("%m/%d/%y")(d.date), value: +d[grpName]};
+        })
+      };
+    });
+    // I strongly advise to have a look to dataReady with
+    console.log(dataReady)
+
+    // A color scale: one color for each group
+    var myColor = d3.scaleOrdinal()
+      .domain(allGroup)
+      .range(d3.schemeSet2);
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleLinear()
+      .domain(d3.extent(data, function(d) { return d.date; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, 70000])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    // Add the lines
+    var line = d3.line()
+      .x(function(d) { return x(+d.time) })
+      .y(function(d) { return y(+d.value) })
+    svg.selectAll("myLines")
+      .data(dataReady)
+      .enter()
+      .append("path")
+        .attr("d", function(d){ return line(d.values) } )
+        .attr("stroke", function(d){ return myColor(d.name) })
+        .style("stroke-width", 4)
+        .style("fill", "none")
+
+    // Add the points
+    svg
+      // First we need to enter in a group
+      .selectAll("myDots")
+      .data(dataReady)
+      .enter()
+        .append('g')
+        .style("fill", function(d){ return myColor(d.name) })
+      // Second we need to enter in the 'values' part of this group
+      .selectAll("myPoints")
+      .data(function(d){ return d.values })
+      .enter()
+      .append("circle")
+        .attr("cx", function(d) { return x(d.time) } )
+        .attr("cy", function(d) { return y(d.value) } )
+        .attr("r", 5)
+        .attr("stroke", "white")
+
+    // Add a legend at the end of each line
+    svg
+      .selectAll("myLabels")
+      .data(dataReady)
+      .enter()
+        .append('g')
+        .append("text")
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time series
+          .attr("transform", function(d) { return "translate(" + x(d.value.time) + "," + y(d.value.value) + ")"; }) // Put the text at the position of the last point
+          .attr("x", 12) // shift the text a bit more right
+          .text(function(d) { return d.name; })
+          .style("fill", function(d){ return myColor(d.name) })
+          .style("font-size", 15)
+
+})
+
+
+</script>

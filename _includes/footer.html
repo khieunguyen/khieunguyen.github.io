@@ -1,0 +1,46 @@
+<footer>
+<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+	<div class="footer bg-primary text-light" id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="copyright">
+						<p>&copy; {{ site.name }}. All right reserved.</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<!-- ul class="social-network" -->
+					    {% for network in site.social %}
+					    
+					    {% if network.title == "orcid" %}
+						<a class="text-light" style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="Orcid"><i class="ai ai-orcid ai-2x"></i></a>
+						{% endif %}
+						
+						{% if network.title == "researchgate" %}
+						<a class="text-light" style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="ResearchGate"><i class="ai ai-researchgate ai-2x"></i></a>
+						{% endif %}
+						
+						{% if network.title == "mendeley" %}
+						<a class="text-light" style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="Mendeley"><i class="ai ai-mendeley ai-2x"></i></a>
+						{% endif %}
+						
+						{% if network.title == "google-scholar" %}
+						<a class="text-light" style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="Google Scholar"><i class="ai ai-google-scholar ai-2x"></i></a>
+						{% endif %}
+						
+						{% if network.title == "linkedin" %}
+						<a class="text-light" style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-2x"></i></a>
+						{% endif %}
+						
+						{% if network.title == "github" %}
+						<a class="text-light" style="padding-left:4px" href="{{ network.url }}" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github fa-2x"></i></a>
+						{% endif %}
+						
+						{% endfor %}
+						
+					<!-- /ul -->
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

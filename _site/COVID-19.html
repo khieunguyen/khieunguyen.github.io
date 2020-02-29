@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Khieu V. NGUYEN's site</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Khieu V. Nguyen, Ph.D." />
+    <meta name="current-job" content="Data Scientist" />
+    <meta name="keywords" content="Data Scientist, Monte Carlo simulation, diffusion MRI, numerical simulation, modeling, GPU programming, CUDA, OpenACC, Python, C++, Matlab, LaTex" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- css -->
+	<link href="/css/Litera/bootstrap.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+    <!-- script src="https://kit.fontawesome.com/0b0bc30e16.js" crossorigin="anonymous"></script -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="/skins/favicon.ico">
+
+    <!-- Latest compiled and minified CSS -->
+    <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" -->
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+	<!--
+
+	<link href="/css/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<link href="/css/jcarousel.css" rel="stylesheet" />
+	<link href="/css/flexslider.css" rel="stylesheet" />
+	<link href="/css/style.css" rel="stylesheet" />
+
+	-->
+
+	<!--
+	=======================================================
+    Jekyll Theme: Personal site
+    Author: Khieu V. NGUYEN
+	=======================================================
+	-->
+
+    
+
+    
+    <!-- Load d3.js and the geo projection plugin -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <!-- Color Scale -->
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+     crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+     crossorigin=""></script>
+    <style>
+      #mymap{ height: 100% }
+    </style>
+
+    </style>
+    
+
+</head>
+
+
+<body>
+	<div id="wrapper">
+		<!-- start header -->
+<header>
+    <div class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <!-- Brand Image and text -->
+            
+            <a class="navbar-brand" href="http://localhost:4000">
+                
+                    <img src="/skins/Logo.png" class="d-inline-block align-top" alt="">
+                
+                Khieu V. NGUYEN
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapseMenu" aria-controls="collapseMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color:primary"></span>
+            </button>
+            <!-- collapse menu -->
+            <div class="collapse navbar-collapse " id="collapseMenu">
+                <ul class="navbar-nav ml-auto">
+				    
+                    
+                        <li class="nav-item"><a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                        
+                    
+                    
+                    
+                        <li class="nav-item"><a class="nav-link" href="/notes"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Notes</a></li>
+                        
+                    
+                    
+                    
+                        <li class="nav-item"><a class="nav-link" href="/reading"><i class="fa fa-book" aria-hidden="true"></i> Reading</a></li>
+                        
+                    
+                    
+                    
+				</ul>
+            </div>
+            <select class="selectpicker" data-width="fit">
+                <option data-content='EN'><span class="flag-icon flag-icon-us"></span>EN</option>
+                <option  data-content='<span class="flag-icon flag-icon-vi"></span>VN'>VN</option>
+            </select>
+            <script>
+            $(function(){
+                $('.selectpicker').selectpicker();
+            });
+            </script>
+        </div>
+    </div>
+
+</header>
+<!-- end header -->
+
+
+		<div class="container">
+  <!-- tagline -->
+  <div class="row clearfix" >
+
+  </div>
+
+  <div class="row">
+    <!-- Left column -->
+    <div class="col-lg-8 col-sm-12 col-md-8">
+      <h3> Coronavirus COVID-19 Global Cases </h3>
+      <div id="mapid" style="min-width:600px; width:100%; height: 600px;"></div>
+
+    </div>
+    <!-- End left column -->
+
+    <!-- Right column -->
+    <div class="col-lg-4 col-sm-12 col-md-4">
+      <div id="my_dataviz1"></div>
+    </div>
+    <!-- End right column -->
+
+  </div>
+</div>
+
+<!-- map data -->
+<script>
+  	var mymap = L.map('mapid').setView([31.505, 117.09], 2);
+
+  	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+  		maxZoom: 18,
+  		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+  			'<a href="">Khieu V. NGUYEN</a> © 2020',
+  		id: 'mapbox/streets-v11'
+  	}).addTo(mymap);
+
+    // Add a svg layer to the map
+    L.svg().addTo(mymap);
+
+    // Create data for circles:
+    /*var markers = [
+      {long: 9.083, lat: 42.149}, // corsica
+      {long: 7.26, lat: 43.71}, // nice
+      {long: 2.349, lat: 48.864}, // Paris
+      {long: -1.397, lat: 43.664}, // Hossegor
+      {long: 3.075, lat: 50.640}, // Lille
+      {long: -3.83, lat: 48}, // Morlaix
+    ];*/
+    var markers = $.getJSON({'url': "http://localhost:4000/nCov19-data/confirmed.json", 'async': false});
+    markers = JSON.parse(markers.responseText);
+    // alert(markers.lat);
+    // Select the svg area and add circles:
+    d3.select("#mapid")
+      .select("svg")
+      .selectAll("myCircles")
+      .data(markers)
+      .enter()
+      .append("circle")
+        .attr("cx", function(d){ return mymap.latLngToLayerPoint([d.Lat, d.Long]).x })
+        .attr("cy", function(d){ return mymap.latLngToLayerPoint([d.Lat, d.Long]).y })
+        .attr("r",  function(d){
+                      if (d.total > 5000) {return 45;}
+                      if (d.total > 2000) {return 30;}
+                      if (d.total > 240) {return 20;}
+                      if (d.total > 153) {return 15;}
+                      if (d.total > 60) {return 10;}
+                      if (d.total > 21) {return 5;}
+                      if (d.total > 0) {return 2;}
+              })
+        .style("fill", "red")
+        .attr("stroke", "red")
+        .attr("stroke-width", 1)
+        .attr("fill-opacity", .7)
+
+    // Function that update circle position if something change
+    function update() {
+      d3.selectAll("circle")
+        .attr("cx", function(d){ return mymap.latLngToLayerPoint([d.Lat, d.Long]).x })
+        .attr("cy", function(d){ return mymap.latLngToLayerPoint([d.Lat, d.Long]).y })
+    }
+
+    // If the user change the map (zoom or drag), I update circle position:
+    mymap.on("moveend", update)
+
+</script>
+
+<!-- Line plot -->
+<!-- Circle are black when hovered-->
+<style>
+.myCircle:hover {
+  stroke: black;
+}
+</style>
+
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 100, bottom: 30, left: 30},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("http://localhost:4000/nCov19-data/daily_data.csv", function(data) {
+
+    // List of groups (here I have one group per column)
+    var allGroup = ["confirmed","death","recovered"]
+
+    // Reformat the data: we need an array of arrays of {x, y} tuples
+    var dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
+      return {
+        name: grpName,
+        values: data.map(function(d) {
+          return {time: d3.timeParse("%m/%d/%y")(d.date), value: +d[grpName]};
+        })
+      };
+    });
+    // I strongly advise to have a look to dataReady with
+    console.log(dataReady)
+
+    // A color scale: one color for each group
+    var myColor = d3.scaleOrdinal()
+      .domain(allGroup)
+      .range(d3.schemeSet2);
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleLinear()
+      .domain(d3.extent(data, function(d) { return d.date; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, 70000])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    // Add the lines
+    var line = d3.line()
+      .x(function(d) { return x(+d.time) })
+      .y(function(d) { return y(+d.value) })
+    svg.selectAll("myLines")
+      .data(dataReady)
+      .enter()
+      .append("path")
+        .attr("d", function(d){ return line(d.values) } )
+        .attr("stroke", function(d){ return myColor(d.name) })
+        .style("stroke-width", 4)
+        .style("fill", "none")
+
+    // Add the points
+    svg
+      // First we need to enter in a group
+      .selectAll("myDots")
+      .data(dataReady)
+      .enter()
+        .append('g')
+        .style("fill", function(d){ return myColor(d.name) })
+      // Second we need to enter in the 'values' part of this group
+      .selectAll("myPoints")
+      .data(function(d){ return d.values })
+      .enter()
+      .append("circle")
+        .attr("cx", function(d) { return x(d.time) } )
+        .attr("cy", function(d) { return y(d.value) } )
+        .attr("r", 5)
+        .attr("stroke", "white")
+
+    // Add a legend at the end of each line
+    svg
+      .selectAll("myLabels")
+      .data(dataReady)
+      .enter()
+        .append('g')
+        .append("text")
+          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time series
+          .attr("transform", function(d) { return "translate(" + x(d.value.time) + "," + y(d.value.value) + ")"; }) // Put the text at the position of the last point
+          .attr("x", 12) // shift the text a bit more right
+          .text(function(d) { return d.name; })
+          .style("fill", function(d){ return myColor(d.name) })
+          .style("font-size", 15)
+
+})
+
+
+</script>
+
+
+		<footer>
+<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+	<div class="footer bg-primary text-light" id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="copyright">
+						<p>&copy; Khieu V. NGUYEN. All right reserved.</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<!-- ul class="social-network" -->
+					    
+					    
+					    
+						<a class="text-light" style="padding-left:4px" href="https://orcid.org/0000-0002-9003-9595" target="_blank" data-placement="top" title="Orcid"><i class="ai ai-orcid ai-2x"></i></a>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						<a class="text-light" style="padding-left:4px" href="https://www.researchgate.net/profile/Khieu_Nguyen3" target="_blank" data-placement="top" title="ResearchGate"><i class="ai ai-researchgate ai-2x"></i></a>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						
+						
+						<a class="text-light" style="padding-left:4px" href="https://www.mendeley.com/profiles/khieu-nguyen/" target="_blank" data-placement="top" title="Mendeley"><i class="ai ai-mendeley ai-2x"></i></a>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						
+						
+						
+						
+						<a class="text-light" style="padding-left:4px" href="https://scholar.google.fr/citations?user=zlsAAt8AAAAJ&hl=en" target="_blank" data-placement="top" title="Google Scholar"><i class="ai ai-google-scholar ai-2x"></i></a>
+						
+						
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						
+						
+						
+						
+						
+						
+						<a class="text-light" style="padding-left:4px" href="https://www.linkedin.com/in/khieunguyen/" target="_blank" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-2x"></i></a>
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					    
+					    
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<a class="text-light" style="padding-left:4px" href="http://github.com/khieunguyen" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github fa-2x"></i></a>
+						
+						
+						
+						
+					<!-- /ul -->
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+
+	<!--a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a -->
+<!-- javascript
+================================================== -->
+<!-- Placed at the end of the document => faster -->
+<script src="/js/jquery.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.fancybox.pack.js"></script>
+<script src="/js/jquery.fancybox-media.js"></script>
+<script src="/js/google-code-prettify/prettify.js"></script>
+<script src="/js/portfolio/jquery.quicksand.js"></script>
+<script src="/js/portfolio/setting.js"></script>
+<script src="/js/jquery.flexslider.js"></script>
+<script src="/js/animate.js"></script>
+<script src="/js/custom.js"></script>
+
+
+</body>
+
+</html>

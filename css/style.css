@@ -1,0 +1,125 @@
+.navbar-brand img {    
+    height: 47px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-image:none !important;
+ }
+ .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color:none !important;
+ }
+ 
+ .progress-label {
+    float: left;
+    margin-right: 1em;
+}
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+.progress {
+    height: 13px;
+}
+
+.progress-labels p {
+    margin-top: 0;
+    margin-bottom: 0!important;
+}
+
+.card {
+    margin-bottom: 5px;
+}
+
+.card-title {
+    color: #4582EC;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 0.75rem;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.profile-header {
+     text-align: center; 
+     margin: auto auto;
+     padding: 10px;
+}
+.profile-header img {
+    max-width: 120px;
+    max-height: 120px;
+    float: left;
+    overflow: auto;
+    border-radius: 50%;
+    border-image-width: 10px;
+}
+
+.profile-text {
+    margin-bottom: 10px;
+}
+.profile-text p{
+    margin-top: 0px;
+    margin-bottom: auto;
+}
+
+.profile-topic{
+    margin-top: 5px !important;
+}
+
+.profile-span {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px 0px;
+}
+.profile-span p {
+    font-size: 0.963rem;
+    font-weight: 400;
+}
+
+.profile-text-sm {
+    padding-bottom: 5px;
+}
+.profile-text-sm p{
+    font-size: 0.963rem;
+    font-weight: 400;
+}
+
+.company-logo {
+    padding-left:5px;
+    padding-right:0px;
+}
+.company-logo img{
+    width: 100%;
+    max-width:100px;
+    min-width:42px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bagde {
+    font-size: 85% !important;
+    vertical-align: baseline !important;
+    margin-bottom: 2px;
+}
+
+.alert span {
+    float:left;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: -4px 5px 0px -10px;
+}
+.footer {
+    padding: 20px 0
+}

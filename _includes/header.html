@@ -1,0 +1,54 @@
+<!-- start header -->
+<header>
+    <div class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <!-- Brand Image and text -->
+            
+            <a class="navbar-brand" href="{{ site.url }}">
+                {% if site.logo-img %}
+                    <img src="{{ site.baseurl }}/{{ site.logo-img }}" class="d-inline-block align-top" alt="">
+                {% endif %}
+                {{ site.name }}
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapseMenu" aria-controls="collapseMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color:primary"></span>
+            </button>
+            <!-- collapse menu -->
+            <div class="collapse navbar-collapse " id="collapseMenu">
+                <ul class="navbar-nav ml-auto">
+				    {% for link in site.navbar-links %}
+                    {% if link[1].first %}
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">{{ link[0] }} <i class="fa fa-angle-down"></i> 
+                        </a>
+                        <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenu">
+                          {% for childlink in link[1] %}
+                            {% for linkparts in childlink %}
+                            <a class="dropdown-item nav-link" href="{{ site.baseurl }}/{{ linkparts[1] }}">{{ linkparts[0] }}</a>
+                              
+                            {% endfor %}
+                          {% endfor %}
+                        </div>
+                      </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ site.baseurl }}/{{ link[1] }}">{{ link[0] }}</a></li>
+                        
+                    {% endif %}
+                    {% endfor %}
+                    
+				</ul>
+            </div>
+            <select class="selectpicker" data-width="fit">
+                <option data-content='EN'><span class="flag-icon flag-icon-us"></span>EN</option>
+                <option  data-content='<span class="flag-icon flag-icon-vi"></span>VN'>VN</option>
+            </select>
+            <script>
+            $(function(){
+                $('.selectpicker').selectpicker();
+            });
+            </script>
+        </div>
+    </div>
+
+</header>
+<!-- end header -->

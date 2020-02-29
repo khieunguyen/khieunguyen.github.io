@@ -1,0 +1,81 @@
+
+<head>
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Khieu V. Nguyen, Ph.D." />
+    <meta name="current-job" content="Data Scientist" />
+    <meta name="keywords" content="Data Scientist, Monte Carlo simulation, diffusion MRI, numerical simulation, modeling, GPU programming, CUDA, OpenACC, Python, C++, Matlab, LaTex" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- css -->
+	<link href="{{ site.baseurl }}/css/Litera/bootstrap.css" rel="stylesheet" />
+    <link href="{{ site.baseurl }}/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+    <!-- script src="https://kit.fontawesome.com/0b0bc30e16.js" crossorigin="anonymous"></script -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="{{ site.baseurl }}/skins/favicon.ico">
+
+    <!-- Latest compiled and minified CSS -->
+    <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" -->
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+	<!--
+
+	<link href="{{ site.baseurl }}/css/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<link href="{{ site.baseurl }}/css/jcarousel.css" rel="stylesheet" />
+	<link href="{{ site.baseurl }}/css/flexslider.css" rel="stylesheet" />
+	<link href="{{ site.baseurl }}/css/style.css" rel="stylesheet" />
+
+	-->
+
+	<!--
+	=======================================================
+    Jekyll Theme: Personal site
+    Author: Khieu V. NGUYEN
+	=======================================================
+	-->
+
+    {% if page.mathjax %}
+    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    {% endif %}
+
+    {% if page.Leaflet %}
+    <!-- Load d3.js and the geo projection plugin -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <!-- Color Scale -->
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+     crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+     crossorigin=""></script>
+    <style>
+      #mymap{ height: 100% }
+    </style>
+
+    </style>
+    {% endif %}
+
+</head>

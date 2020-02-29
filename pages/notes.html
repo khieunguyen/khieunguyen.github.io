@@ -1,0 +1,133 @@
+---
+layout: default
+title: Notes
+intro: "The best way to learn something is to teach it to someone."
+icon: "notes.png"
+permalink: "/notes"
+---
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="row">
+            <h2>Notes</h2>
+        </div>
+
+        <div class="col-12 col-lg-12">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="tag-list">
+                    {% for category in site.data.categories %}
+
+                    <a class="category" href="#{{category.name | replace: " ","_"}}">
+                    {{ category.name }}
+                    </a>
+
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+            {% for category in site.data.categories %}
+            {% if site.categories[category.name].size > 0 %}
+            <div class="card">
+                <h5 class="card-header" id="{{category.name | replace: " ","_"}}">
+                <i class="{{ category.icon }}"></i>
+                {{ category.name }}
+                </h5>
+                <div class="card-body">
+                <ul>
+                {% for post in site.categories[category.name] %}
+                <div class="card" style="width: 18rem;">
+
+                        {% if post.img %}
+                        <img src="{{post.img}}" class="card-img-top" alt="...">
+                        {% else %}
+                        <!--img src="{{post.img}}" class="card-img-top" alt="..."-->
+                        {% endif %}
+                        <div class="card-body">
+                        <h5 class="card-title"><a href="{{post.url}}">{{post.title}}</a></h5>
+                        <p class="card-text">{{post.summary}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <i class="fa fa-calendar" aria-hidden="true"></i> <small class="text-muted">{{post.date | date_to_string}}</small>
+                        </div>
+                </div>
+                {% endfor %}
+                </ul>
+                </div>
+            </div>
+            {% else %}
+            {{site.categories[category.name]}}
+            {% endif %}
+            {% endfor %}
+
+            <div class="card-deck">
+            {% for post in site.posts %}
+
+                <div class="card" style="width: 18rem;">
+                    {% if post.thumb %}
+                    <img src="{{post.thumb}}" class="card-img-top" alt="...">
+                    {% else %}
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">
+                        <a href="{{post.url}}">{{post.title}}</a>
+                        </h5>
+                        <p class="card-text">{{post.summary}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <i class="fa fa-calendar" aria-hidden="true"></i> <small class="text-muted">{{post.date | date_to_string}}</small>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            </div>
+
+
+            <!-- This loops through the paginated posts -->
+            {% for post in paginator.posts %}
+              <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+              <p class="author">
+                <span class="date">{{ post.date }}</span>
+              </p>
+              <div class="content">
+                {{ post.content }}
+              </div>
+
+              test
+            {% endfor %}
+
+            <!-- Pagination links -->
+            {% if paginator.total_pages > 1 %}
+            <div class="pagination">
+              {% if paginator.previous_page %}
+                <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a>
+              {% else %}
+                <span>&laquo; Prev</span>
+              {% endif %}
+
+              {% for page in (1..paginator.total_pages) %}
+                {% if page == paginator.page %}
+                  <em>{{ page }}</em>
+                {% elsif page == 1 %}
+                  <a href="{{ paginator.previous_page_path | relative_url }}">{{ page }}</a>
+                {% else %}
+                  <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+                {% endif %}
+              {% endfor %}
+
+              {% if paginator.next_page %}
+                <a href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+              {% else %}
+                <span>Next &raquo;</span>
+              {% endif %}
+            </div>
+            {% endif %}
+
+
+        </div>
+    </div>
+</div>
