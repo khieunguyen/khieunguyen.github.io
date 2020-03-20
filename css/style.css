@@ -1,4 +1,4 @@
-.navbar-brand img {    
+.navbar-brand img {
     height: 47px;
     margin-top: -8px;
     margin-bottom: -8px;
@@ -10,7 +10,7 @@
  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     background-color:none !important;
  }
- 
+
  .progress-label {
     float: left;
     margin-right: 1em;
@@ -50,7 +50,7 @@
 }
 
 .profile-header {
-     text-align: center; 
+     text-align: center;
      margin: auto auto;
      padding: 10px;
 }
@@ -110,7 +110,7 @@
 .bagde {
     font-size: 85% !important;
     vertical-align: baseline !important;
-    margin-bottom: 2px;
+    margin: 2px;
 }
 
 .alert span {
